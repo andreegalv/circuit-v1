@@ -1,0 +1,105 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background: whitesmoke;
+}
+
+.body-content {
+    margin-top: 70px;
+}
+
+.bold {
+    font-weight: bold;
+    color:#564444 ;
+}
+
+.top-control {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.filters {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.button-group-filter {
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th {
+    vertical-align: middle;
+}
+
+.error-container {
+    padding: 15px 0;
+    text-align: center;
+}
+
+.error-container .header 
+{
+    margin: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.error-container .header > h1 {
+    font-size: 90px;
+    color: #ce9090;
+}
+
+.error-container .header > h1 > small {
+    color: #ce9090;
+}
+
+.error-container .body > .lead {
+    color: #ce9090;
+}
+
+.card-body .title {
+    font-size: 15px;
+}
+
+.list-simple {
+    list-style: none;
+}
+
+ul.pl-0,
+ol.pl-0 {
+    padding-inline-start: 0;
+}
+
+ul.pl-1,
+ol.pl-1 {
+    padding-inline-start: 1em;
+}
+
+.font-mono {
+    font-family: monospace;
+}
+
+.flex-container-row {
+    display:flex;
+    flex-direction: row;
+}
+
+.flex-container-row .fo-1 {
+    order: 1;
+}
+.flex-container-row .fo-2 {
+    order: 2;
+}
+
+.w-75 {
+    width: 75%;
+}

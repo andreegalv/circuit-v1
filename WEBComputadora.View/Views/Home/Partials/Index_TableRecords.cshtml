@@ -1,0 +1,96 @@
+﻿@model WEBComputadora.Model.ViewModels.Home.HomeIndexViewModel
+
+@{
+    Layout = string.Empty;
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default card">
+            <div class="panel-body">
+                <div class="card-body">
+                    <div class="title">
+                        <span class="glyphicon glyphicon-list-alt" style="margin-right: 9px"></span>
+                        Registros de base de datos
+                    </div>
+                    <hr />
+                    <ul class="list-simple">
+                        @if (Model.HomeDatabasesList.Count > 0)
+                        {
+                            foreach (var tableItem in Model.HomeDatabasesList.OrderBy(m => m.Order))
+                            {
+                                <li>
+                                    <div class="flex-container-row">
+                                        @if (tableItem.IsSubLevel)
+                                        {
+                                            <div class="fo-1 w-75" style="padding-left:20px">
+                                                @tableItem.TableName
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="fo-1 w-75">
+                                                @tableItem.TableName
+                                            </div>
+                                        }
+
+                                        <div class="fo-2 bold font-mono">
+                                            @tableItem.TableTotalRecords registros
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            <li>
+                                <div class="flex-container-row" style="margin-top: 10px;">
+                                    <div class="fo-1 w-75">Total</div>
+                                    <div class="fo-2 bold font-mono">
+                                        @Model.TotalDatabaseRecords registros
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li> No existen registros para mostrar. </li>
+                        }
+                    </ul>
+                    <hr />
+                    <ul class="list-simple">
+                        <li>
+                            <span class="glyphicon glyphicon-leaf"></span>
+                            Semilla: <span class="bold">@Model.SeedNumber</span>
+                            @Html.ActionLink("¿Usar otra semilla?", "UpdateSeed", "Home")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="card">
+            <div class="panel-body">
+                <div class="card-body">
+                    <div class="title">
+                        <span style="font-size: 15px;">Menu</span>
+                    </div>
+                    <hr />
+                    <ol class="pl-1">
+                        @if (Model.HomeMenusList.Count > 0)
+                        {
+                            foreach (var menuItem in Model.HomeMenusList)
+                            {
+                                <li>
+                                    @Html.ActionLink(menuItem.Description, menuItem.ActionName, menuItem.RouteName)
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li> No existen registros para mostrar. </li>
+                        }
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WEBComputadora.View.Utils.Loggers.BaseLogger">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAICAAAABAABAAAAAAAAAAAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Utils\Loggers\BaseLogger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WEBComputadora.View.Utils.Loggers.ExceptionLogger">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Utils\Loggers\ExceptionLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="WEBComputadora.View.Utils.Interfaces.ILogger" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Utils\Interfaces\ILogger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="WEBComputadora.View.Utils.Loggers.LoggerMessageType">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Utils\Loggers\LoggerMessageType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

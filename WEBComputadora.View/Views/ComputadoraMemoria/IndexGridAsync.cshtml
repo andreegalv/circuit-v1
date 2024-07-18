@@ -1,0 +1,77 @@
+﻿@model WEBComputadora.Model.ViewModels.ComputadorasMemorias.ComputadoraMemoriaGrillaVistaModelo
+@using WEBComputadora.View.Helpers.Html
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Computadoras
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Computadora</td>
+                        <td>Memoria</td>
+                        <td>Capacidad (MB)</td>
+                        <td>(GB)</td>
+                        <td>Tipo</td>
+                        <td>Frecuencia</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.Datas != null && Model.Datas.Count > 0)
+                    {
+                        foreach (var modelItem in Model.Datas)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Display", "ComputadoraMemoria",
+                                                    new
+                                                    {
+                                                        computadoraId = modelItem.ComputadoraId,
+                                                        computadoraMemoriaId = modelItem.ComputadoraMemoriaId
+                                                    })" class="btn btn-default btn-sm"
+                                       title="Ver @modelItem.Computadora.Descripcion">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                                <td>@modelItem.Computadora.Descripcion</td>
+                                <td>@modelItem.Memoria.Descripcion</td>
+                                <td>@modelItem.Memoria.Capacidad</td>
+                                <td>@modelItem.Memoria.CapacidadGigaBytes</td>
+                                <td>@modelItem.Memoria.Tipo</td>
+                                <td>@modelItem.Memoria.Frecuencia MHz</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8">
+                                No existen datos que mostrar
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            @if (Model.Paginator != null && Model.Paginator.HasPagination)
+                            {
+                                @Html.PaginatorBar(Model.Paginator.CurrentPage, Model.Paginator.FirstPage, Model.Paginator.LastPage)
+                            }
+                        </td>
+                        <td colspan="2" class="text-right">
+                            <div>
+                                Total: @Model.TotalRecords
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

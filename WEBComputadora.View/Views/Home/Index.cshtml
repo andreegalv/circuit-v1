@@ -1,0 +1,88 @@
+﻿@model WEBComputadora.Model.ViewModels.Home.HomeIndexViewModel
+@using WEBComputadora.View.Helpers.Html
+
+<dic class="row">
+    <div class="col-xs-12">
+        @if (Model.HasMessages)
+        {
+            <div class="row">
+                <div class="col-xs-12">
+                    @foreach (var message in Model.Messages)
+                    {
+                        @Html.AlertMessage(message.Description, message.Type)
+                    }
+                </div>
+            </div>
+        }
+
+        @{ Html.RenderPartial("~/Views/Home/Partials/Index_TableRecords.cshtml", Model); }
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="panel panel-default card">
+                    <div class="panel-body">
+                        <div class="card-body">
+                            <div class="title">
+                                <span class="glyphicon glyphicon-cog" style="margin-right: 9px"></span>
+                                Configuraciones
+                            </div>
+                            <hr />
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.WaitTimeRequest, "Tiempo de espera base datos (ms)")
+                                @Html.TextBoxFor(m => m.WaitTimeRequest, new { type = "number", @class = "form-control" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.TotalRecordsSeed, "Registros a crear")
+                                @Html.TextBoxFor(m => m.TotalRecordsSeed, new { type = "number", @class = "form-control" })
+                            </div>
+                            <hr />
+                            <button id="btnUpdateConfiguration" type="button" class="btn btn-primary">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</dic>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#btnUpdateConfiguration', function () {
+                var data = new Object();
+                data.waitTimeRequest = $('#@Html.IdFor(m => m.WaitTimeRequest)').val();
+                data.totalRecordsCreate = $('#@Html.IdFor(m => m.TotalRecordsSeed)').val();
+
+                $.ajax({
+                    data: data,
+                    url: '@Url.Action("UpdateWaitTimeRequest", "Home")',
+                    method: 'POST',
+                    beforeSend: function () {
+                        $('#btnUpdateConfiguration').attr('disabled', '');
+                    },
+                    success: function (response) {
+                        if (response.Ok) {
+                            alert("Se cambio correctamente el tiempo de respuesta del servidor.");
+                        }
+                        else {
+                            alert("No fue posible cambiar el tiempo de respuesta del servidor, asegurese que ingreso un rango entre 0 y 10000.");
+                        }
+                        $('#@Html.IdFor(m => m.WaitTimeRequest)').val(response.WaitTimeRequest);
+                        $('#@Html.IdFor(m => m.TotalRecordsSeed)').val(response.TotalRecordsSeed);
+                    },
+                    error: function (response) {
+                        console.log(reponse);
+                    },
+                    complete: function () {
+                        $('#btnUpdateConfiguration').removeAttr('disabled');
+                    }
+                });
+            });
+        });
+
+    </script>
+    
+    }

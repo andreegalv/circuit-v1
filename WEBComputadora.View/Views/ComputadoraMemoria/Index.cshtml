@@ -1,0 +1,186 @@
+﻿@model WEBComputadora.Model.ViewModels.ComputadorasMemorias.ComputadoraMemoriaVistaModelo
+@using WEBComputadora.View.Helpers.Html
+
+
+@{
+    ViewBag.Title = Model.FormTitle;
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>@Model.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="top-control">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="estado_tabla"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="filters">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.DescripcionFilter, "Memoria")
+                                    @Html.TextBoxFor(m => m.DescripcionFilter, new { @class = "form-control", @placeholder = "Descripción memoria" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CapacidadIgualFilter, "Capacidad igual a")
+                                    @Html.TextBoxFor(m => m.CapacidadIgualFilter, new { @type = "number", @class = "form-control", @placeholder = "Capacidad mayor a" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CapacidadMayorAFilter, "Capacidad (GB) mayor a")
+                                    @Html.TextBoxFor(m => m.CapacidadMayorAFilter, new { @type = "number", @class = "form-control", @placeholder = "Capacidad mayor a" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="button-group-filter">
+                                    <div class="pull-right">
+                                        <div class="btn-group" role="group">
+                                            @Html.DropdownRows("<span class='glyphicon glyphicon-th-list'></span>", Model.PageSize.Size, Model.PageSize.SizeCollection, true)
+                                            <button id="BtnActionFilter" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-filter"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div id="load_tabla"></div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+
+    $(document).ready(function () {
+        LoadInternalGrid(GetFilterValues());
+
+        $("#BtnActionFilter").click(function () {
+            LoadInternalGrid(GetFilterValues());
+        });
+
+        $("#buttonChangeRows > ul > li > a").click(function () {
+            if ($(this).attr('data-changerows-selected') === undefined)
+            {
+                var myButtonRowSelected = $(this);
+
+                $('#buttonChangeRows > ul').find('li > a[data-changerows-selected]')
+                    .removeAttr('data-changerows-selected')
+                    .parent()
+                    .removeClass("disabled");
+
+                $(myButtonRowSelected)
+                    .attr('data-changerows-selected', '')
+                    .parent()
+                    .addClass("disabled");
+
+
+                LoadInternalGrid(GetFilterValues());
+            }
+        });
+
+        $(document).on("click", "#paginatorBar > ul > li > a", function () {
+            if (!$(this).parent().hasClass('active'))
+            {
+                var data = GetFilterValues();
+                data.changePage = true;
+                data.toPage = $(this).attr('data-to-page');
+
+                LoadInternalGrid(data);
+            }
+        })
+    });
+
+    function LoadInternalGrid(data)
+    {
+        url = '@Url.Action("IndexGridAsync", "ComputadoraMemoria")';
+        $.ajax({
+            data: data,
+            url: url,
+            type: 'POST',
+            beforeSend: function () {
+                SetFilterValues(true);
+                ShowMessageStatus('Obteniendo datos ...', "info");
+                SetLoadTableHTML("");
+            },
+            success: function (response) {
+                ShowMessageStatus('¡Cargado!', "success");
+                SetLoadTableHTML(response);
+            },
+            error: function (response) {
+                ShowMessageStatus('¡Ocurrio un error mientras se obtenian los datos!', "danger");
+            },
+            complete: function () {
+                SetFilterValues(false);
+            }
+        });
+    }
+
+    function SetLoadTableHTML(html)
+    {
+        $("#load_tabla").html(html);
+    }
+
+    function SetFilterValues(isReadOnly)
+    {
+        if (isReadOnly) {
+            $('#@Html.IdFor(m => m.DescripcionFilter)').attr('disabled', '');
+            $('#@Html.IdFor(m => m.CapacidadIgualFilter)').attr('disabled', '');
+            $('#@Html.IdFor(m => m.CapacidadMayorAFilter)').attr('disabled', '');
+            $('#buttonChangeRows > button').attr('disabled', '');
+            $('#BtnActionFilter').attr('disabled', '');
+        }
+        else
+        {
+            $('#@Html.IdFor(m => m.DescripcionFilter)').removeAttr('disabled');
+            $('#@Html.IdFor(m => m.CapacidadIgualFilter)').removeAttr('disabled');
+            $('#@Html.IdFor(m => m.CapacidadMayorAFilter)').removeAttr('disabled');
+            $('#buttonChangeRows > button').removeAttr('disabled');
+            $('#BtnActionFilter').removeAttr('disabled');
+        }
+    }
+
+    function GetFilterValues()
+    {
+        var filtersObject = new Object();
+
+        filtersObject.descripcion      = $("#@Html.IdFor(m => m.DescripcionFilter)").val();
+        filtersObject.capacidadIgual   = $("#@Html.IdFor(m => m.CapacidadIgualFilter)").val();
+        filtersObject.capacidadMayorGb = $("#@Html.IdFor(m => m.CapacidadMayorAFilter)").val();
+        filtersObject.pageSize         = $("a[data-changerows-selected]").attr("data-changerows-val");
+
+        return filtersObject;
+    }
+
+    function ShowMessageStatus(message, type)
+    {
+        $('#estado_tabla').html("<span class='label label-" + type + "'>" + message + "</span>");
+    }
+
+    </script>
+}
+
+

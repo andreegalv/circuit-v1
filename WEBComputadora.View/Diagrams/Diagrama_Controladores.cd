@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WEBComputadora.View.Services.ComputadoraMemoriaServicio">
+    <Position X="1" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAARAAEAAAAIAAAAgAAAAAAAAAAAACAAgAAA=</HashCode>
+      <FileName>Services\ComputadoraMemoriaServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WEBComputadora.View.Services.HomeService">
+    <Position X="4.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAIEAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\HomeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WEBComputadora.Controllers.ComputadoraMemoriaController">
+    <Position X="0.75" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAIAAAAAAAAAAAAAAQAAAAAAAAIAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ComputadoraMemoriaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEBComputadora.Controllers.HomeController">
+    <Position X="4.25" Y="5.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEEAAEAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEBComputadora.Controllers.RESTComputadoraMemoriaController">
+    <Position X="8.25" Y="5.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Controllers\RESTComputadoraMemoriaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WEBComputadora.Services.RESTComputadoraMemoriaServicio">
+    <Position X="8.5" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAA=</HashCode>
+      <FileName>Services\RESTComputadoraMemoriaServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="WEBComputadora.View.Services.Interfaces.IComputadoraMemoriaServicio" Collapsed="true">
+    <Position X="1" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Services\Interfaces\IComputadoraMemoriaServicio.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WEBComputadora.View.Services.Interfaces.IHomeService" Collapsed="true">
+    <Position X="4.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Interfaces\IHomeService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WEBComputadora.Services.Interfaces.IRESTComputadoraMemoriaServicio" Collapsed="true">
+    <Position X="8.5" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAA=</HashCode>
+      <FileName>Services\Interfaces\IRESTComputadoraMemoriaServicio.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
