@@ -7,6 +7,6 @@ La estructura del proyecto es la siguiente
 -- WEBComputadora.Model: Capa modelo
 -- WEBComputadora.Test: Pruebas unitarias
 
-NET Framework 4.5
+NET Framework 4.6.2
 
 Prueba tecnica 2019
